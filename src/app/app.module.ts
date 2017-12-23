@@ -6,16 +6,21 @@ import { RouterModule } from '@angular/router';
 import { enableProdMode } from '@angular/core';
 import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
+import { TestComponent } from './test/test.component';
+import { DepartComponent } from './depart/depart.component';
 
 
 @NgModule({
+  //사용할 컴포넌트들이 등록되는 곳
   declarations: [
-    //사용할 모든 컴포넌트를 등록하는 곳
     AppComponent,
-    UserComponent
+    TestComponent,
+    UserComponent,
+    DepartComponent
   ],
+  //사용할 컴포넌트들에서 임포트 안해도 사용할 수 있게 모듈 등록하는 곳
   imports: [
-    //사용할 컴포넌트들에서 임포트 안해도 사용할 수 있게 모듈 등록하는 곳
+    
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -24,6 +29,14 @@ import { UserComponent } from './user/user.component';
       {
         path:"user",
         component:UserComponent
+      },
+      {
+        path:"test",
+        component:TestComponent
+      },
+      {
+        path:"depart",
+        component:DepartComponent
       }
     ])
   ],
