@@ -1,22 +1,19 @@
 <p>
   {{ title }}
 </p>
+
 <div>
-  dino : <input type="text" [(ngModel)]="di.dino">
-  diname : <input type="text" [(ngModel)]="di.diname">
-  didesc : <input type="text" [(ngModel)]="di.didesc">
-  dicnt : <input type="text" [(ngModel)]="di.dicnt">
+  부서번호 {{ di.diNo }} <br/>
+  부서이름 {{ di.diName }} <br/>
+  부서설명 {{ di.diDesc }} <br/>
+  부서인원 {{ di.diCnt }} <br/>
 </div>
-<div>
-  {{di.dino}}<br/>
-  {{di.diname}}<br/>
-  {{di.didesc}}<br/>
-  {{di.dicnt}}
-</div>
-<button (click)="addDepart()">부서추가</button>
+
+<app-depart-insert *ngIf="parentVisible" [title]="subTitle" (childeVisible)="toggleDepartInsert($event)" (childeDi)="addDepart($event)"></app-depart-insert>
+<button (click)="toggleDepartInsert(true)">부서추가</button>
 <button (click)="showDepartList()">부서리스트 보기</button>
-<button (click)="changeShow()">{{ btnstr }}</button>
-<app-test *ngIf="isShow"></app-test>
+<!-- <button (click)="changeShow()">{{ btnstr }}</button> -->
+<!-- <app-test *ngIf="isShow"></app-test> -->
 <table border='1' *ngIf=diList.length>
   <tr>
     <th>부서번호</th>
@@ -26,10 +23,10 @@
     <th>삭제</th>
   </tr>
   <tr *ngFor="let di of diList">
-    <td>{{ di.dino }}</td>
-    <td>{{ di.diname }}</td>
-    <td>{{ di.didesc }}</td>
-    <td>{{ di.dicnt }}</td>
+    <td>{{ di.diNo }}</td>
+    <td>{{ di.diName }}</td>
+    <td>{{ di.diDesc }}</td>
+    <td>{{ di.diCnt }}</td>
     <td><button (click)="deleteDi(di)">삭제</button></td>
   </tr>
   <!-- <tr *ngFor="let di of diList; let idx = index">

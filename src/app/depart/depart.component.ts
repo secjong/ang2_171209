@@ -15,6 +15,9 @@ export class DepartComponent implements OnInit {
   btnstr:string = "테스트보기";
   diList:Array<Depart> = [];
 
+  parentVisible:boolean = false;
+  subTitle:string = this.title + "입력";
+
   constructor(private dis:DepartService) {
     this.di = new Depart();
     // dis.getDepartList();
@@ -22,9 +25,13 @@ export class DepartComponent implements OnInit {
   }
 
   
-  addDepart():void{
-    this.dis.addDepart(this.di);
-    this.di = new Depart();
+  addDepart(di:Depart):void{
+    this.dis.addDepart(di).subscribe(
+      datas => {
+        let result = datas.json(); 
+        this.di = result.di;
+      }
+    );    
   };
 
   showDepartList():void{
@@ -51,6 +58,10 @@ export class DepartComponent implements OnInit {
     // }
     ;
     this.diList.splice(this.diList.indexOf(di), 1);
+  };
+
+  toggleDepartInsert(v:boolean):void{
+    this.parentVisible = v;
   };
 
   ngOnInit() {

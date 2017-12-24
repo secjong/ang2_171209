@@ -8,19 +8,22 @@ import { AppComponent } from './app.component';
 import { UserComponent } from './user/user.component';
 import { TestComponent } from './test/test.component';
 import { DepartComponent } from './depart/depart.component';
+import { WelcomeComponent } from './welcome/welcome.component';
+import { DepartInsertComponent } from './depart-insert/depart-insert.component';
+import { FuncTestComponent } from './func-test/func-test.component';
 
 
 @NgModule({
-  //사용할 컴포넌트들이 등록되는 곳
   declarations: [
     AppComponent,
     TestComponent,
+    WelcomeComponent,
+    DepartComponent,
     UserComponent,
-    DepartComponent
+    DepartInsertComponent,
+    FuncTestComponent
   ],
-  //사용할 컴포넌트들에서 임포트 안해도 사용할 수 있게 모듈 등록하는 곳
   imports: [
-    
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -37,6 +40,14 @@ import { DepartComponent } from './depart/depart.component';
       {
         path:"depart",
         component:DepartComponent
+      },
+      {
+        path:"",
+        component:WelcomeComponent
+      },
+      {
+        path:"functest",
+        component:FuncTestComponent
       }
     ])
   ],
@@ -44,3 +55,6 @@ import { DepartComponent } from './depart/depart.component';
   bootstrap: [AppComponent]
 })
 export class AppModule { }
+
+//d 사용할 컴포넌트들이 등록되는 곳
+//i 사용할 컴포넌트들에서 임포트 안해도 사용할 수 있게 모듈 등록하는 곳

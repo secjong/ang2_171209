@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { User } from './user';
+import { User } from './user/user';
 
 @Component({
   selector: 'app-root',
@@ -10,20 +10,22 @@ import { User } from './user';
 export class AppComponent {
   title = 'app';
 
+  user:User;
+
   //컴포넌트에서 사용할 User 배열
   userList : Array<User> = []; //제너릭
-  user : User = new User();
-  userName : string = "";
-  userAge : number = null;
 
   constructor(){
-    
+    this.user = new User();
+    this.user.userId = "test";
+    this.user.userName = "테스틋";
+    sessionStorage.setItem("user", JSON.stringify(this.user));
   };
 
   addUser() : void {
     var user : User = new User();
-    user.userName = this.userName;
-    user.userAge = this.userAge;
+    user.userName = this.user.userName;
+    user.userAge = this.user.userAge;
     this.userList.push(user);
   };
 
