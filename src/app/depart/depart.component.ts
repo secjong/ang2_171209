@@ -16,26 +16,37 @@ export class DepartComponent implements OnInit {
   diList:Array<Depart> = [];
 
   parentVisible:boolean = false;
+  updateVisible:boolean = false;
   subTitle:string = this.title + "입력";
+  diNo:string = '';
+  duDiNo:number;
 
   constructor(private dis:DepartService) {
     this.di = new Depart();
-    // dis.getDepartList();
-    console.log("나도 누군가 호출하겠지~");
   }
 
   
   addDepart(di:Depart):void{
-    this.dis.addDepart(di).subscribe(
+    this.dis.addDepartPost(di).subscribe(
       datas => {
         let result = datas.json(); 
-        this.di = result.di;
+        console.log(result);
+        if(result.succeed == "ok"){
+          alert("부서가 추가되었습니다.");
+          this.showDepartList();
+        }else{
+          alert("부서추가가 실패했습니다.");
+        }
       }
-    );    
+    );
   };
 
   showDepartList():void{
-    this.diList = this.dis.getDepartList();
+    this.dis.getDepartList(this.diNo).subscribe(
+      datas=>{
+        this.diList = (datas.json());
+      }
+    )
   };
 
   changeShow():void{
@@ -48,20 +59,43 @@ export class DepartComponent implements OnInit {
     }
   };
 
+  openView(di:Depart):void{
+    this.duDiNo = di.diNo;
+    this.updateVisible = true;
+  };
+
   deleteDi(di:Depart):void{
-    console.log(di);
     // for(let i = 0; i < this.diList.length; i++){
     //   if(idx === this.diList[i].dino){
     //     //인덱스가 같은경우 지우기
     //     this.diList.splice(i,1);
     //   }
     // }
-    ;
-    this.diList.splice(this.diList.indexOf(di), 1);
+    // this.diList.splice(this.diList.indexOf(di), 1);
+    
+    this.dis.deleteDepart(di).subscribe(
+      datas => {
+        let result = datas.json(); 
+        if(result.error){
+          alert(result.error.msg);
+          console.log(result.error);
+        }else{
+          alert("부서가 삭제되었습니다.");
+          console.log("결과괎 : " , result);
+          this.showDepartList();
+        }
+      }
+    );    
   };
+
+
 
   toggleDepartInsert(v:boolean):void{
     this.parentVisible = v;
+  };
+
+  toggleDepartUpdate(v:boolean):void{
+    this.updateVisible = v;
   };
 
   ngOnInit() {
