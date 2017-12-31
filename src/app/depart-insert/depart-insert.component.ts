@@ -7,7 +7,7 @@ import { Depart } from '../depart/depart';
 })
 export class DepartInsertComponent implements OnInit {
   @Input() title:string;
-  @Output() childeVisible = new EventEmitter<boolean>();
+  @Output() diVisible = new EventEmitter<boolean>();
   @Output() childeDi = new EventEmitter<Depart>();
   di:Depart
   constructor() {
@@ -23,6 +23,6 @@ export class DepartInsertComponent implements OnInit {
   };
 
   close():void{
-    this.childeVisible.emit(false);
+    this.diVisible.emit(false);
   }
 }

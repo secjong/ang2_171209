@@ -1,8 +1,8 @@
 <p>
   {{ title }}
 </p>
-<app-depart-update *ngIf="updateVisible" [title]="subTitle" [duDiNo]="duDiNo" (childeVisible)="toggleDepartUpdate($event)"></app-depart-update>
-<app-depart-insert *ngIf="parentVisible" [title]="subTitle" (duVisible)="toggleDepartInsert($event)" (childeDi)="addDepart($event)"></app-depart-insert>
+<app-depart-update *ngIf="updateVisible" [title]="subTitle" (duVisible)="toggleDepartUpdate($event)" [duDiNo]="duDiNo" (duCase)="updateDepartRes($event)"></app-depart-update>
+<app-depart-insert *ngIf="parentVisible" [title]="subTitle" (diVisible)="toggleDepartInsert($event)" (childeDi)="addDepart($event)"></app-depart-insert>
 <button (click)="toggleDepartInsert(true)">부서추가</button>
 <input type="text" [(ngModel)]="diNo">
 <button (click)="showDepartList()">부서리스트 검색</button>

@@ -1,0 +1,42 @@
+<p>
+  user-depart works!
+</p>
+<table border="1">
+  <th>번호</th>
+  <th>이름</th>
+  <th>아이디</th>
+  <th>부서번호</th>
+  <th>부서명</th>
+  <th>수정하기</th>
+  <th>삭제하기</th>
+  <!-- <th>부서번호</th>
+  <th>부서이름</th>
+  <th>부서설명</th>
+  <th>부서인원</th> -->
+  <tr *ngFor="let ud of udList">
+    <td>{{ ud.userno }}</td>
+    <!-- <td>{{ ud.username }}</td>
+    <td>{{ ud.userage }}</td>
+    <td>{{ ud.userid }}</td>
+    <td>{{ ud.useraddress }}</td>
+    <td>{{ ud.dino }}</td>
+    <td>{{ ud.diName }}</td>
+    <td>{{ ud.diDesc }}</td>
+    <td>{{ ud.diCnt }}</td> -->
+    <td><input type="text" [(ngModel)]="ud.username"></td>
+    <td><input type="text" [(ngModel)]="ud.userid"></td>
+    <td>{{ ud.dino }}</td>
+    <td>
+      <select [(ngModel)]="ud.dino">
+        <option *ngFor="let di of diList" [value]="di.diNo">{{ di.diName }}</option>
+      </select>
+    </td>
+    <td>
+      <button (click)="editUserDepart(ud)">수정</button>
+    </td>
+    <td>
+      <button (click)="deleteUserDepart(ud)">삭제</button>
+    </td>
+  </tr>
+</table>
+<button (click)="getUseDepartList()">유저-부서정보 가져오기</button>

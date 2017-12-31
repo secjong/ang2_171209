@@ -41,6 +41,14 @@ export class DepartComponent implements OnInit {
     );
   };
 
+  updateDepartRes(res:string):void{
+    alert(res);
+    if(res=="reload"){
+      alert("성공!");
+      this.showDepartList();
+    }
+  };
+
   showDepartList():void{
     this.dis.getDepartList(this.diNo).subscribe(
       datas=>{
@@ -87,8 +95,6 @@ export class DepartComponent implements OnInit {
       }
     );    
   };
-
-
 
   toggleDepartInsert(v:boolean):void{
     this.parentVisible = v;

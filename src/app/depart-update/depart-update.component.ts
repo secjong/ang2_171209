@@ -11,6 +11,7 @@ import { DepartUpdateService } from './depart-update.service';
 export class DepartUpdateComponent implements OnInit {
   @Input() duDiNo:number;
   @Output() duVisible = new EventEmitter<boolean>();
+  @Output() duCase = new EventEmitter<string>();
   
   di:Depart = new Depart();
 
@@ -28,11 +29,23 @@ export class DepartUpdateComponent implements OnInit {
   }
 
   close():void{
+    alert(this.duDiNo);
     this.duVisible.emit(false);
   };
 
   updateDepart():void{
-
+    this.dus.updateDepart(this.di).subscribe(
+      res=>{
+        console.log(res.json());
+        if(res.json().succeed == "ok"){
+          alert("수정에 성공했습니다.");
+          this.duCase.emit("reload");
+          this.close();
+        } else {
+          alert("수정에 실패했습니다.");
+        }
+      }
+    )
   };
 
 }
