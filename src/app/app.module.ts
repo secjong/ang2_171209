@@ -16,7 +16,7 @@ import { DepartUpdateComponent } from './depart-update/depart-update.component';
 import { ParentComponent } from './parent/parent.component';
 import { LifecycleTestComponent } from './lifecycle-test/lifecycle-test.component';
 import { UserDepartComponent } from './user-depart/user-depart.component';
-
+import { CommonServiceService } from './common/common-service.service';
 
 @NgModule({
   declarations: [
@@ -69,7 +69,7 @@ import { UserDepartComponent } from './user-depart/user-depart.component';
       }
     ])
   ],
-  providers: [],
+  providers: [CommonServiceService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

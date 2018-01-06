@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { User } from './user/user';
+import { CommonServiceService } from './common/common-service.service';
+import { RouterLink } from './router-link'; 
 
 @Component({
   selector: 'app-root',
@@ -9,17 +11,26 @@ import { User } from './user/user';
 
 export class AppComponent {
   title = 'app';
-
+  mlist:Array<RouterLink> = [];
   user:User;
 
   //컴포넌트에서 사용할 User 배열
   userList : Array<User> = []; //제너릭
 
-  constructor(){
+  constructor(private css:CommonServiceService){
     this.user = new User();
     this.user.userId = "test";
     this.user.userName = "테스틋";
     sessionStorage.setItem("user", JSON.stringify(this.user));
+
+    let url = "http://localhost:3000/api/menus";
+    this.css.getJson(url).subscribe(
+      res=>{
+        console.log(res);
+        this.mlist = res.list;
+      }
+    )
+
   };
 
   addUser() : void {

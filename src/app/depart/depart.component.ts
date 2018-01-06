@@ -52,7 +52,7 @@ export class DepartComponent implements OnInit {
   showDepartList():void{
     this.dis.getDepartList(this.diNo).subscribe(
       datas=>{
-        this.diList = (datas.json());
+        this.diList = (datas.json().list);
       }
     )
   };
